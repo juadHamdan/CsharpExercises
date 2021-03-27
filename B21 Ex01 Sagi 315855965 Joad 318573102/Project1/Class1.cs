@@ -1,7 +1,7 @@
 ﻿class Class1
 {
      const int k_InputLength = 7;
-
+    const int k = 5;
 
 
 
