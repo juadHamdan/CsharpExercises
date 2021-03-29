@@ -5,22 +5,27 @@ namespace B21_Ex01_2
 {
      public class Ex01_2
      {
-          const int k_NumOfAsteriskBase = 5;
           const bool v_SandClockDirectionStart = true;
+          const bool v_SandClockFirstCall = true;
           static int m_NumberOfSpaces = 0;
+          static int m_FirstInputForBeginnerSandClock = 0;
 
-          public static void BeginnerSandClock(int i_NumOfAsteriskBase = k_NumOfAsteriskBase, bool i_SandDirection = v_SandClockDirectionStart)
+          public static void BeginnerSandClock(int i_NumOfAsteriskBase)
+          {
+               m_FirstInputForBeginnerSandClock = i_NumOfAsteriskBase;
+               BeginnerSandClockHelper(i_NumOfAsteriskBase, v_SandClockDirectionStart, v_SandClockFirstCall);
+          }
+
+          public static void BeginnerSandClockHelper(int i_NumOfAsteriskBase, bool i_SandDirection, bool isFirstAsteriskBase = false)
           {
                if (i_NumOfAsteriskBase == 1)
                {
-                    //PrintAsterisk(i_NumOfAsteriskBase);
                     i_SandDirection = false;
-                    //BeginnerSandClock(nextNumOfAsterisInLine);
                }
                int nextNumOfAsterisInLine;
 
                PrintAsterisk(i_NumOfAsteriskBase);
-               if (i_NumOfAsteriskBase == k_NumOfAsteriskBase && !i_SandDirection)
+               if (i_NumOfAsteriskBase == m_FirstInputForBeginnerSandClock && !i_SandDirection)
                {
                     return;
                }
@@ -35,8 +40,8 @@ namespace B21_Ex01_2
                     nextNumOfAsterisInLine = i_NumOfAsteriskBase + 2;
                     m_NumberOfSpaces--;
                }
-               
-               BeginnerSandClock(nextNumOfAsterisInLine, i_SandDirection);
+
+               BeginnerSandClockHelper(nextNumOfAsterisInLine, i_SandDirection);
           }
 
 

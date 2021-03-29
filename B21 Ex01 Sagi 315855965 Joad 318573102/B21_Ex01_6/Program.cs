@@ -1,12 +1,13 @@
 ﻿using System;
 
-namespace B21_Ex01_3
+namespace B21_Ex01_6
 {
-     class Program
+     public class Program
      {
           public static void Main()
           {
-               Ex01_3.AdvancedSandClock();
+               Ex01_6.NumStats();
+
                Console.WriteLine("Enter any key to end program.");
                Console.ReadLine();
           }
