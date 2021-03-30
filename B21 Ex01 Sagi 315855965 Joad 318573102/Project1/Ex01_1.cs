@@ -72,7 +72,7 @@ i_HowManyNumsArePowerOf2, i_HowManyNumsAnAscendingSeries, i_AvgNumOfOnesInInput,
                Console.WriteLine(i_DataAndStatsOutput);
           }
 
-          static bool IsDigitStrAnAscendingSeries(string io_DigitStr)
+          private static bool IsDigitStrAnAscendingSeries(string io_DigitStr)
           {
                bool isAscendingSeries = true;
 
@@ -87,12 +87,12 @@ i_HowManyNumsArePowerOf2, i_HowManyNumsAnAscendingSeries, i_AvgNumOfOnesInInput,
                return isAscendingSeries;
 
           }
-          static int ConvertBinStrToDecNum(string io_BinStr)
+          private static int ConvertBinStrToDecNum(string io_BinStr)
           {
                return Convert.ToInt32(io_BinStr, 2);
           }
 
-          static int NumOfZerosInString(string io_Str)
+          private static int NumOfZerosInString(string io_Str)
           {
                int numOfZerosInStr = 0;
 
@@ -107,14 +107,14 @@ i_HowManyNumsArePowerOf2, i_HowManyNumsAnAscendingSeries, i_AvgNumOfOnesInInput,
                return numOfZerosInStr;
           }
 
-          static bool IsBinStringPowerOf2(string io_Str)
+          private static bool IsBinStringPowerOf2(string io_Str)
           {
                int numOfOnesInString = k_InputLength - NumOfZerosInString(io_Str);
                return numOfOnesInString == 1;
           }
-          
 
-          static string GetBinStrFromUser()
+
+          private static string GetBinStrFromUser()
           {
                string binFormatString = null;
                bool isInputInRightLen = false, isInputInBinFormat = false;
@@ -135,7 +135,7 @@ i_HowManyNumsArePowerOf2, i_HowManyNumsAnAscendingSeries, i_AvgNumOfOnesInInput,
                return binFormatString;
           }
 
-          static bool IsStringInBinFormat(string io_String)
+          private static bool IsStringInBinFormat(string io_String)
           {
                bool isStrInBitFormat = true;
                
