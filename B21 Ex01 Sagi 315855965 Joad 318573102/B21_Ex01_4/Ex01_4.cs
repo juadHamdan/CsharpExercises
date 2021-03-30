@@ -35,7 +35,7 @@ namespace B21_Ex01_4
                }
                if (isInputNumeric)
                {
-                    if (IsDivByDigit(int.Parse(stringInput)), k_DivBy)
+                    if (IsDivByDigit(int.Parse(stringInput), k_DivBy))
                     {
                          Console.WriteLine("The number is divisible by 4.");
                     }
@@ -44,9 +44,16 @@ namespace B21_Ex01_4
 
           public static string GetInputByLength(int i_Num)
           {
-               Console.WriteLine("Enter a string: ");
-               string stringInput = Console.ReadLine();
+               string stringInput;
 
+               Console.WriteLine("Enter a string: ");
+               stringInput = Console.ReadLine();
+
+               while (stringInput.Length != k_InputLength)
+               { 
+                    Console.WriteLine("Wrong Input length, please enter another string: ");
+                    stringInput = Console.ReadLine();                    
+               }
 
                return stringInput;
           }
