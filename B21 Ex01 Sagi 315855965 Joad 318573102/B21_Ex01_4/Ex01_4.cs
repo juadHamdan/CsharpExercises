@@ -5,41 +5,37 @@ namespace B21_Ex01_4
 {
      public class Ex01_4
      {
-          const int k_InputLength = 10;
-          const int k_DivBy = 4;
+          private const int k_InputLength = 10;
+          private const int k_DivBy = 4;
 
           public static void StringAnalysis()
           {
-               //GetInputByLength need to be in a separate function to check :
-               // GetInputByLength && (IsNumeric || IsAlpha)
-               string stringInput = GetInputByLength(k_InputLength);
+               string stringInput = getValidInputByLength(k_InputLength);
                bool isInputNumeric = IsNumeric(stringInput);
-               bool isInputAlpha = IsAlpha(stringInput);
-
-               bool isInputEngAlpha;
+               bool isInputAlpha = isAlpha(stringInput);
                int numOfEngUpperCase;
+               StringBuilder msg = new StringBuilder();
+
+               if (isPalindromeRec(stringInput))
+               {
+                    msg.Append("The input is palindrome.\n");
+               }
 
                if (isInputAlpha)
                {
-                    isInputEngAlpha = IsEngAlpha(stringInput);
-
-                    if (IsPalindromeRec(stringInput))
-                    {
-                         Console.WriteLine("The input is palindrome.");
-                    }
-                    if (isInputEngAlpha)
-                    {
-                         numOfEngUpperCase = GetNumOfUpperCaseLetters(stringInput);
-                         string.Format("The number of upper case letters is: {0}", numOfEngUpperCase);
-                    }
+                    numOfEngUpperCase = getNumOfUpperCaseLetters(stringInput);
+                    msg.AppendFormat(string.Format("The number of upper case letters is: {0}\n", numOfEngUpperCase));
                }
+
                if (isInputNumeric)
                {
-                    if (IsDivByDigit(int.Parse(stringInput), k_DivBy))
+                    if (IsDivByDigit(long.Parse(stringInput), k_DivBy))
                     {
-                         Console.WriteLine("The number is divisible by 4.");
+                         msg.Append("The number is divisible by 4.\n");
                     }
                }
+
+               Console.WriteLine(msg);
           }
 
           public static string GetInputByLength(int i_Num)
@@ -49,50 +45,102 @@ namespace B21_Ex01_4
                Console.WriteLine("Enter a string: ");
                stringInput = Console.ReadLine();
 
-               while (stringInput.Length != k_InputLength)
-               { 
+               while (stringInput.Length != i_Num)
+               {
                     Console.WriteLine("Wrong Input length, please enter another string: ");
-                    stringInput = Console.ReadLine();                    
+                    stringInput = Console.ReadLine();
                }
 
                return stringInput;
           }
 
+          private static string getValidInputByLength(int i_InputLength)
+          {
+               string stringInput = GetInputByLength(i_InputLength);
+               bool isInputNumeric = IsNumeric(stringInput);
+               bool isInputAlpha = isAlpha(stringInput);
+               bool isValidInput = isInputNumeric || isInputAlpha;
+
+               while (!isValidInput)
+               {
+                    Console.WriteLine("Wrong input, try again.\n");
+                    stringInput = GetInputByLength(i_InputLength);
+                    isInputNumeric = IsNumeric(stringInput);
+                    isInputAlpha = isAlpha(stringInput);
+                    isValidInput = isInputNumeric || isInputAlpha;
+               }
+
+               return stringInput;
+          }
 
           public static bool IsNumeric(string i_Str)
           {
-               return true;
+               bool isNumeric = true;
+
+               for (int i = 0; i < i_Str.Length; i++)
+               {
+                    if (!char.IsDigit(i_Str[i]))
+                    {
+                         isNumeric = false;
+                    }
+               }
+
+               return isNumeric;
           }
 
-          public static bool IsAlpha(string i_Str)
+          private static bool isAlpha(string i_Str)
           {
-               return true;
+               bool isNumeric = true;
 
+               for (int i = 0; i < i_Str.Length && isNumeric; i++)
+               {
+                    if (!char.IsLetter(i_Str[i]))
+                    {
+                         isNumeric = false;
+                    }
+               }
+
+               return isNumeric;
           }
 
-          public static bool IsEngAlpha(string i_Str)
+          private static bool isPalindromeRec(string i_Str)
           {
-               return true;
+               bool isPali;
 
+               if (i_Str.Length == 0 || i_Str.Length == 1)
+               {
+                    isPali = true;
+               }
+               else if (Math.Equals(i_Str[0], i_Str[i_Str.Length - 1]))
+               {
+                    isPali = isPalindromeRec(i_Str.Substring(1, i_Str.Length - 2));
+               }
+               else
+               {
+                    isPali = false;
+               }
+
+               return isPali;
           }
 
-          public static bool IsPalindromeRec(string i_Str)
+          private static int getNumOfUpperCaseLetters(string i_Str)
           {
-               return true;
+               int upperCaseCounter = 0;
 
+               for (int i = 0; i < i_Str.Length; i++)
+               {
+                    if (char.IsUpper(i_Str[i]))
+                    {
+                         upperCaseCounter++;
+                    }
+               }
+
+               return upperCaseCounter;
           }
 
-          public static int GetNumOfUpperCaseLetters(string i_Str)
+          public static bool IsDivByDigit(long i_Num, int i_Digit)
           {
-               return 0;
-
+               return i_Num % i_Digit == 0;
           }
-
-          public static bool IsDivByDigit(int i_Num, int i_Digit)
-          {
-               return true;
-
-          }
-
      }
 }

@@ -4,7 +4,7 @@ namespace B21_Ex01_2
 {
      public class Program
      {
-          const int k_NumOfAsteriskBase = 5;
+          private const int k_NumOfAsteriskBase = 5;
 
           public static void Main()
           {

@@ -2,7 +2,7 @@
 
 namespace B21_Ex01_3
 {
-     class Program
+     public class Program
      {
           public static void Main()
           {
