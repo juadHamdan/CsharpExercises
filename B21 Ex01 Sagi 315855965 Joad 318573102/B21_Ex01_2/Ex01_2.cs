@@ -5,26 +5,27 @@ namespace B21_Ex01_2
 {
      public class Ex01_2
      {
-          const bool v_SandClockDirectionStart = true;
-          const bool v_SandClockFirstCall = true;
-          static int m_NumberOfSpaces = 0;
-          static int m_FirstInputForBeginnerSandClock = 0;
+          private const bool v_SandClockDirectionStart = true;
+          private const bool v_SandClockFirstCall = true;
+          private static int m_NumberOfSpaces = 0;
+          private static int m_FirstInputForBeginnerSandClock = 0;
 
           public static void BeginnerSandClock(int i_NumOfAsteriskBase)
           {
                m_FirstInputForBeginnerSandClock = i_NumOfAsteriskBase;
-               BeginnerSandClockHelper(i_NumOfAsteriskBase, v_SandClockDirectionStart, v_SandClockFirstCall);
+               beginnerSandClockHelper(i_NumOfAsteriskBase, v_SandClockDirectionStart, v_SandClockFirstCall);
           }
 
-          public static void BeginnerSandClockHelper(int i_NumOfAsteriskBase, bool i_SandDirection, bool isFirstAsteriskBase = false)
+          private static void beginnerSandClockHelper(int i_NumOfAsteriskBase, bool i_SandDirection, bool isFirstAsteriskBase = false)
           {
+               int nextNumOfAsterisInLine;
+
                if (i_NumOfAsteriskBase == 1)
                {
                     i_SandDirection = false;
                }
-               int nextNumOfAsterisInLine;
 
-               PrintAsterisk(i_NumOfAsteriskBase);
+               printAsterisk(i_NumOfAsteriskBase);
                if (i_NumOfAsteriskBase == m_FirstInputForBeginnerSandClock && !i_SandDirection)
                {
                     return;
@@ -41,21 +42,21 @@ namespace B21_Ex01_2
                     m_NumberOfSpaces--;
                }
 
-               BeginnerSandClockHelper(nextNumOfAsterisInLine, i_SandDirection);
+               beginnerSandClockHelper(nextNumOfAsterisInLine, i_SandDirection);
           }
 
-
-
-          public static void PrintAsterisk(int io_NumOfAsterisk)
+          private static void printAsterisk(int io_NumOfAsterisk)
           {
-               for (int i = 0; i < m_NumberOfSpaces; i++) //print spaces
+               for (int i = 0; i < m_NumberOfSpaces; i++)
                {
                     Console.Write(" ");
                }
-               for (int i = 0; i<io_NumOfAsterisk; i++) //print asterisk
+
+               for (int i = 0; i < io_NumOfAsterisk; i++)
                {
                     Console.Write("*");
                }
+
                Console.WriteLine(); 
           }
      }

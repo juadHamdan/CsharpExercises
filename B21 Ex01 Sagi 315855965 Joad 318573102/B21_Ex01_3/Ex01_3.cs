@@ -3,15 +3,15 @@ using static B21_Ex01_2.Ex01_2;
 
 namespace B21_Ex01_3
 {
-    class Ex01_3
+    public class Ex01_3
      {
           public static void AdvancedSandClock()
           {
-               int numOfAsterisk = GetNumOfBaseAsterisk();
+               int numOfAsterisk = getValidNumOfBaseAsterisk();
                BeginnerSandClock(numOfAsterisk);
           } 
 
-          public static int GetNumOfBaseAsterisk()
+          private static int getValidNumOfBaseAsterisk()
           {
                string inputAsteriskBase;
                int asteriskBase = 0;
